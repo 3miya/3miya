@@ -1,0 +1,6 @@
+{
+  "name": "本顏室 Ben Yan Shi - 頂級原生肌膚管理與美學沙龍",
+  "description": "專注頂級毛孔清潔管理、基礎專屬原生修護與沉浸放鬆體驗，提供手機與網頁全尺寸響應式預約體驗。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
