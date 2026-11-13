@@ -1,6 +1,6 @@
 import { Treatment, AddonItem, StudioBranch } from '../types';
 
-export const HERO_IMAGE = '/src/assets/images/hero_spa_banner_1792041906876.jpg';
+export const HERO_IMAGE = '/assets/aistudio/image_da5865cc.png';
 export const FACIAL_TREATMENT_IMAGE = '/src/assets/images/facial_treatment_1792041934924.jpg';
 
 export const STUDIO_INFO: StudioBranch = {
@@ -9,328 +9,555 @@ export const STUDIO_INFO: StudioBranch = {
   badge: '全預約制 · 獨立隱私包廂',
   address: '104 臺北市中山區松江路 297 巷 1 號 2 樓',
   metro: '捷運行天宮 3 號出口（步行約 2 分鐘）',
-  phone: '0962015282',
   hours: '週一至週日 11:00 - 22:00（有特殊時段需求都可以討論預約）',
   googleMapUrl: 'https://maps.google.com/?q=台北市中山區松江路297巷1號2樓',
   instagramUrl: 'https://www.instagram.com/healglow_space/',
+  lineUrl: 'https://line.me/R/ti/p/@healglow_space',
 };
 
 export const BRANCHES: StudioBranch[] = [STUDIO_INFO];
 
+// 每個標籤的專屬色彩對應表（確保全站相同名稱標籤具有絕對一致的顏色）
+export const TAG_COLORS: Record<string, string> = {
+  '深層修護': 'text-emerald-800 bg-emerald-50 border-emerald-300',
+  '高CP✨': 'text-amber-800 bg-amber-50 border-amber-300',
+  '美白緊緻': 'text-rose-800 bg-rose-50 border-rose-300',
+  '細緻拋光': 'text-orange-800 bg-orange-50 border-orange-300',
+  '無痛換膚&營養注入': 'text-cyan-800 bg-cyan-50 border-cyan-300',
+  '=100片面膜': 'text-blue-800 bg-blue-50 border-blue-300',
+  '全效煥膚': 'text-purple-800 bg-purple-50 border-purple-300',
+  '水潤透亮': 'text-sky-800 bg-sky-50 border-sky-300',
+  '活絡機能': 'text-purple-800 bg-purple-50 border-purple-300',
+  '上半身': 'text-blue-800 bg-blue-50 border-blue-300',
+  '下半身': 'text-teal-800 bg-teal-50 border-teal-300',
+  '私密部位': 'text-indigo-800 bg-indigo-50 border-indigo-300',
+};
+
+export const getTagColor = (tag: string): string => {
+  return TAG_COLORS[tag] || 'text-[#334E68] bg-slate-50 border-slate-200';
+};
+
+// 完整價目表與活動分類項目（精確對應隨附圖：皮膚管理、除毛、SPA按摩、限定活動專案）
 export const TREATMENTS: Treatment[] = [
-  // 1. 專業皮膚護理 (Skincare)
+  // ==========================================
+  // 1. 皮膚管理 (Skincare) - 隨附圖【皮膚管理價目表】
+  // 全課程皆含低痛感手工粉刺清潔；標題下方無小字
+  // ==========================================
   {
-    id: 'deep-pore-cleansing',
+    id: 'basic-botanical-hydra',
     category: 'skincare',
-    subCategory: '深層調理',
-    title: '水光深層毛孔清潔護理',
-    tagline: '無痛手工細緻清粉刺 · 淨化黑頭與老化角質',
+    subCategory: '深層修護',
+    tags: ['深層修護'],
+    title: '本顏 · 基礎植萃保濕',
+    tagline: '',
     features: [
-      '專業手工無痛深層清潔粉刺',
-      '植萃溫和調理軟化老廢角質',
-      '超低溫洋甘菊冰封收斂毛孔'
+      '低痛感細膩手工粉刺清潔（不趕時間，一次乾淨）',
+      '植萃草本溫和軟化代謝角質',
+      '深層活水導入，瞬效提升水潤好氣色'
     ],
-    durationMinutes: 75,
-    price: 1680,
+    durationMinutes: 90,
+    price: 1800,
     originalPrice: 2200,
-    badge: '經典首選',
-    tagColor: 'text-teal-800 bg-teal-50 border-teal-200/70',
-    description: '專為出油旺盛、黑頭白頭堆積、毛孔粗大困擾設計。以溫和軟化精華調理角質，配合專業細緻手工無痛引流代謝深層髒污，清潔後進行超低溫冰封收縮毛孔，讓肌膚重現細緻光滑。',
+    badge: '提升好氣色',
+    tagColor: TAG_COLORS['深層修護'],
+    description: '全課程皆含低痛感手工粉刺清潔。以植萃舒緩配方溫和軟化角質，細膩清潔毛孔髒污與黑白頭，深層補水注養，令肌膚重現水嫩清透光彩。',
     steps: [
-      '植萃親膚深層卸妝與潔顏淨化',
-      '草本角質溫和軟化與放鬆熱敷',
-      '專業細緻手工無痛深層清粉刺',
-      '鎮定舒緩修護精華微導入',
-      '超低溫洋甘菊冰封收縮毛孔',
-      '海藻水凝軟膜深層注水鎖水'
+      '胺基酸溫和潔顏淨化',
+      '草本角質溫和軟化熱敷',
+      '專業手工無痛粉刺深層清除',
+      '植萃保濕精華微超聲波導入',
+      '極致水光鎮定保濕凍膜',
+      '修護乳霜封存水分子'
     ],
-    suitableFor: ['出油旺盛、毛孔粗大者', '草莓鼻、黑頭白頭粉刺頑固者', '日常保養品不易吸收者'],
-    homecareTips: ['施作當晚請以常溫水洗臉', '一週內加強保濕，避免高濃度酸類或去角質', '外出請做好基礎物理防曬'],
+    suitableFor: ['暗沉缺水、氣色不佳者', '毛孔輕微堵塞、初次體驗做臉者', '日常保養吸收不佳者'],
+    homecareTips: ['施作當晚以常溫水潔面', '一週內多敷保濕面膜，避免去角質', '做好日間基礎防曬'],
     image: FACIAL_TREATMENT_IMAGE,
   },
   {
-    id: 'aurora-hydra-repair',
+    id: 'custom-crystal-skin',
     category: 'skincare',
-    subCategory: '水光保濕',
-    title: '極光 · 水光修護煥顏護理',
-    tagline: '活胜肽微分子精華 · 五重玻尿酸深層注水',
+    subCategory: '深層修護',
+    tags: ['深層修護', '高CP✨', '美白緊緻'],
+    title: '本顏 · 淨透肌客製管理',
+    tagline: '',
     features: [
-      '多重活胜肽高滲透深層導入',
-      '五重玻尿酸專利立體抓水鎖水',
-      '修護屏障重現原生透亮光澤'
+      '高CP值全方位客製化調理（含高效安瓶）',
+      '低痛感手工深層排空頑固粉刺與黑頭',
+      '依膚況客製控油美白/彈潤抗老/PDRN水光安瓶'
     ],
-    durationMinutes: 90,
-    price: 2280,
-    originalPrice: 3000,
-    badge: '水光熱推 HOT',
-    tagColor: 'text-sky-800 bg-sky-50 border-sky-200/70',
-    description: '針對暗沉乾燥、疲態缺水、缺乏彈性的疲倦肌膚。以多重活性胜肽與微分子玻尿酸，透過深層微導入直達肌底，強化角質抓水力，打造水潤飽滿的原生光感。',
+    durationMinutes: 120,
+    price: 3500,
+    originalPrice: 4200,
+    badge: 'CP值最高★',
+    tagColor: TAG_COLORS['深層修護'],
+    description: '全店CP值最高的人氣療程！內含高效安瓶，由美容師針對當前膚況客製調配，結合完整無痛粉刺清剿、深層肌底導入與多重修護，打造鏡面淨透肌。',
     steps: [
-      '胺基酸溫和潔顏與表皮調理',
-      '五重微分子玻尿酸立體注水',
-      '活胜肽精華深層超聲波導入',
-      '極光微低溫冰封鎖定水分子',
-      '水光透亮生物纖維極致面膜',
-      '滋養保濕修護霜封存原生光采'
+      '深層活氧潔顏與肌膚檢測',
+      '溫感軟化與無痛手工粉刺徹底清除',
+      '高規格高效安瓶深層高滲透導入',
+      '光能美白修護藍/紅光照射',
+      '低溫冰封收縮毛孔',
+      '高活性水光軟膜深層封存'
     ],
-    suitableFor: ['換季乾荒、脫屑上妝不服貼者', '長期熬夜、膚色蠟黃暗沉者', '重要約會或活動前急救補水'],
-    homecareTips: ['施作後 3 天內加強溫和保濕面膜', '多飲用溫水促進身體循環代謝', '維持規律作息效果更持久'],
+    suitableFor: ['出油旺盛伴隨暗沉缺水者', '追求一步到位頂級全套保養者', '重要約會前夕急救煥顏'],
+    homecareTips: ['施作後加強溫和補水保濕', '一週內避免刺激性酸類或烈日曝曬', '早晚配合專屬居家修護露'],
     image: HERO_IMAGE,
   },
   {
-    id: 'centella-calming-repair',
+    id: 'q-facial-hydra',
     category: 'skincare',
-    subCategory: '舒緩抗敏',
-    title: '積雪草植萃鎮定修護護理',
-    tagline: '退紅舒敏強化屏障 · 敏弱泛紅肌膚專屬調配',
+    subCategory: '無痛換膚&營養注入',
+    tags: ['高CP✨'],
+    title: '「Q菲秀」韓式複合水飛梭',
+    tagline: '',
     features: [
-      '高純度積雪草植萃深層修護',
-      '快速退紅舒緩換季乾癢泛紅',
-      '修補脆弱皮脂膜提升防禦力'
+      '醫美原廠課程，皆含光能美白',
+      '專利真空渦旋技術，溫和深入毛孔不傷肌',
+      '三道原廠精華溶液 (AHA/BHA/TON) 客製清潔調理'
     ],
-    durationMinutes: 60,
-    price: 1580,
-    originalPrice: 2000,
-    badge: '敏弱肌友善',
-    tagColor: 'text-amber-800 bg-amber-50 border-amber-200/70',
-    description: '無添加化學酸類、無酒精、無刺激性香精，專為敏弱肌、易泛紅或雷射醫美後保養設計。利用積雪草與神經醯胺修護脆弱皮脂膜，迅速安撫躁動不適。',
+    durationMinutes: 100,
+    price: 3200,
+    originalPrice: 4000,
+    badge: '醫美原廠',
+    tagColor: TAG_COLORS['無痛換膚&營養注入'],
+    description: '非一般市售入門水飛梭！本顏室採用原廠認證 Q菲秀複合式肌膚管理設備，以專利真空渦旋三步驟帶走角質皮脂髒污，並注入三道醫材級原廠精華與光能美白，溫和不拉扯，做完立刻透亮水潤。',
     steps: [
-      '零負擔純水感溫和潔膚乳',
-      '積雪草純露冷噴舒緩鎮定',
-      '神經醯胺微脂囊修護導入',
-      '洋甘菊冰封水導膜深層退紅',
-      '低敏舒緩多肽修護乳霜鎖水'
+      'STEP 01: AHA水溶性乳酸精華軟化代謝老舊角質',
+      'STEP 02: BHA水楊酸水解毛孔髒污與粉刺油脂',
+      '手工細微修飾加強顽固黑頭粉刺',
+      'STEP 03: TON舒緩修護精華深度保濕注入',
+      '光能美白舒緩照射',
+      '低溫鎮靜水潤定型面膜'
     ],
-    suitableFor: ['換季易泛紅、乾癢刺痛敏弱肌', '雷射或醫美療程後黃金修護期', '長期戴口罩造成摩擦受損者'],
-    homecareTips: ['避免使用過熱的水清洗面部', '暫停使用磨砂膏或高濃度A醇', '使用成分單純溫和的保濕乳霜'],
+    suitableFor: ['油性、粉刺痘痘肌、毛孔粗大者', '敏感肌亦可無痛深層潔淨', '妝感浮粉不貼、暗沉無光者'],
+    homecareTips: ['施作後當天避免高溫三溫暖', '加強日常玻尿酸保濕補水', '外出做好物理性抗UV防曬'],
+    image: '/assets/aistudio/1_28af0695.jpg',
   },
   {
-    id: 'signature-v-contour',
+    id: 'seyo-air-mesotherapy',
     category: 'skincare',
-    subCategory: '緊緻拉提',
-    title: '極致V臉緊緻筋膜提拉護理',
-    tagline: '法式面部筋膜提拉 · 撫平細紋緊實下顎線條',
+    subCategory: '=100片面膜',
+    tags: ['高CP✨', '美白緊緻'],
+    title: 'SEYO 空氣水光訂製管理',
+    tagline: '',
     features: [
-      '法式深層筋膜舒緩提拉手法',
-      '活化微循環迅速消退面部水腫',
-      '重塑清晰下顎線緊緻澎潤'
-    ],
-    durationMinutes: 80,
-    price: 2380,
-    originalPrice: 3200,
-    badge: '輪廓塑型',
-    tagColor: 'text-purple-800 bg-purple-50 border-purple-200/70',
-    description: '結合東方經絡與法式筋膜提拉手法，放鬆緊繃咀嚼肌與筋膜層，加速水分循環代謝，重塑立體輪廓線條，呈現緊實飽滿的原生光采。',
-    steps: [
-      '深層活氧潔面與筋膜醒膚熱敷',
-      '面部淋巴排引與鎖骨引流放鬆',
-      '天然白玉石深層筋膜提拉雕塑',
-      '微電流緊膚儀加強輪廓定位',
-      '膠原蛋白緊膚彈潤定型面膜',
-      '頭頸部深層放鬆與保養品封存'
-    ],
-    suitableFor: ['面部線條鬆弛、輪廓線不明顯者', '晨起容易水腫、雙下巴困擾者', '希望面部更緊緻澎潤有精神者'],
-    homecareTips: ['施作後可輕柔按壓耳後淋巴穴位', '早晨可用微涼水洗臉維持緊緻感', '睡前兩小時減少大量飲水防止水腫'],
-  },
-
-  // 2. 乾淨除毛 (Waxing)
-  {
-    id: 'brazilian-waxing',
-    category: 'waxing',
-    subCategory: '深層調理',
-    title: '巴西全除專業熱蠟護理',
-    tagline: '義大利天然植萃熱蠟 · 私密極淨乾爽舒適',
-    features: [
-      '義大利頂級天然植萃溫熱蠟',
-      '專業手法低痛感深層毛囊除毛',
-      '長效維持潔淨乾爽無異味'
-    ],
-    durationMinutes: 60,
-    price: 1980,
-    originalPrice: 2600,
-    badge: '極淨推薦',
-    tagColor: 'text-teal-800 bg-teal-50 border-teal-200/70',
-    description: '全館獨立隱私包廂施作。嚴選義大利天然植萃溫熱蠟，專為嬌嫩私密肌膚調配，毛髮生長週期大幅延緩，告別生理期悶熱不適與摩擦困擾。',
-    steps: [
-      '私密肌膚清潔與天然消毒調理',
-      '塗抹植萃蠟前修護保護油',
-      '分區溫熱低痛感細緻熱蠟除毛',
-      '手工夾除細小雜毛精密修整',
-      '鎮定舒緩金縷梅冷敷修護凝膠',
-      '生長延緩保濕精華乳塗抹'
-    ],
-    suitableFor: ['生理期易悶熱不適有異味困擾者', '喜愛穿著泳裝、比基尼與運動服者', '追求日常清爽潔淨生活品質者'],
-    homecareTips: ['施作後 3 天內避免泡澡、三溫暖或劇烈流汗', '除毛後一週開始定期進行私密溫和去角質', '穿著寬鬆透氣純棉內褲'],
-  },
-  {
-    id: 'underarm-waxing',
-    category: 'waxing',
-    subCategory: '深層調理',
-    title: '腋下清新淨白熱蠟除毛',
-    tagline: '毛根連根溫和拔除 · 告別黑頭小黑點與暗沉',
-    features: [
-      '溫和連根拔除粗硬雜亂毛髮',
-      '減少刮刀刮傷引發之色素沉著',
-      '長效清爽乾淨自信無負擔'
-    ],
-    durationMinutes: 30,
-    price: 680,
-    originalPrice: 1000,
-    badge: '高CP值',
-    tagColor: 'text-teal-800 bg-teal-50 border-teal-200/70',
-    description: '告別天天用刮刀造成的小黑頭與粗糙暗沉。使用親膚性極佳的溫熱蠟，完整清除毛囊粗硬毛髮，術後配合美白保濕導入，腋下潔淨亮白。',
-    steps: [
-      '肌膚表層潔淨與油脂淨化',
-      '植萃蠟前隔離保護精油',
-      '順向細緻熱蠟除毛拔除根部',
-      '精細手工清理微小殘留毛髮',
-      '傳明酸美白舒緩凝膠鎮定',
-      '抑毛保濕修護霜封存'
-    ],
-    suitableFor: ['習慣刮除毛髮導致毛囊粗大發黑者', '喜愛無袖上衣、背心與洋裝者', '希望腋下清爽乾淨無異味者'],
-    homecareTips: ['除毛當日避免噴灑含酒精止汗劑', '3 天內避免穿著過緊摩擦之衣物', '一週後適度去角質防止內生毛'],
-  },
-  {
-    id: 'calves-waxing',
-    category: 'waxing',
-    subCategory: '水光保濕',
-    title: '小腿絲滑柔嫩熱蠟除毛',
-    tagline: '大面積溫和除毛 · 雙腿肌膚觸感柔嫩細緻',
-    features: [
-      '大面積溫和順向熱蠟除毛',
-      '代謝表皮老廢角質兼具嫩膚',
-      '術後深層保濕精華封存'
-    ],
-    durationMinutes: 45,
-    price: 1280,
-    originalPrice: 1800,
-    badge: '絲滑美腿',
-    tagColor: 'text-sky-800 bg-sky-50 border-sky-200/70',
-    description: '針對小腿粗硬毛髮或經常刮腿毛引發的粗糙顆粒感。採用天然植萃熱蠟快速大面積清除，同時帶走腿部老廢角質，雙腿立即重現絲滑白皙觸感。',
-    steps: [
-      '小腿表面潔顏淨化與溫敷',
-      '蠟前隔離親膚滋養精油',
-      '大面積順向溫熱蠟脫毛處理',
-      '細節手工夾除微小絨毛',
-      '低敏舒緩蘆薈保濕凍膜敷貼',
-      '深層絲滑潤膚乳全身封存'
-    ],
-    suitableFor: ['常穿短裙短褲追求細嫩腿部肌膚者', '刮腿毛常造成毛囊角化粗糙者', '追求觸感光滑細緻者'],
-    homecareTips: ['除毛後一週定期去角質避免毛髮倒插', '洗澡後勤擦身體乳液維持保濕', '外出請注意腿部基礎防曬'],
-  },
-  {
-    id: 'face-waxing',
-    category: 'waxing',
-    subCategory: '緊緻拉提',
-    title: '全臉絲滑光澤熱蠟除毛',
-    tagline: '代謝細毛汗毛與唇周雜毛 · 上妝極致服貼不卡粉',
-    features: [
-      '溫和清除全臉絨毛與唇周鬍渣',
-      '代謝表層老化粗糙老舊角質',
-      '底妝輕透服貼呈現原生光澤'
-    ],
-    durationMinutes: 45,
-    price: 1180,
-    originalPrice: 1600,
-    badge: '底妝救星',
-    tagColor: 'text-purple-800 bg-purple-50 border-purple-200/70',
-    description: '全臉細小汗毛常常導致粉底不服貼或暗沉發灰。美容師以低溫專用臉部熱蠟細緻代謝絨毛與老廢角質，術後立即導入積雪草保濕修護，肌膚細緻發光。',
-    steps: [
-      '溫和胺基酸深層卸妝洗臉',
-      '臉部專用親膚蠟前防護液',
-      '額頭、臉頰、唇周分區低溫除毛',
-      '細緻手工修飾微小絨毛',
-      '洋甘菊冰封水導膜深層降紅',
-      '積雪草屏障修護乳塗抹'
-    ],
-    suitableFor: ['臉部細毛汗毛明顯、唇周暗沉者', '上粉底容易浮粉不貼妝卡粉者', '希望面部素顏時更透亮光滑者'],
-    homecareTips: ['施作後 48 小時內避免高溫熱水洗臉', '一週內加強保濕，避免酸類去角質', '出門務必塗抹溫和無香精防曬乳'],
-  },
-
-  // 3. 舒壓按摩 (Massage)
-  {
-    id: 'fullbody-oil-massage',
-    category: 'massage',
-    subCategory: '舒緩抗敏',
-    title: '植萃精油全身深層釋壓 SPA',
-    tagline: '芳療級草本精油 · 全身經絡深層鬆解身心壓力',
-    features: [
-      '歐盟進口芳療級草本複方精油',
-      '全背肩頸腿部深層經絡滑壓指壓',
-      '釋放深層疲憊累積恢復輕盈活力'
+      '醫美原廠課程，皆含光能美白',
+      '德國原廠無創氣壓滲透技術，不破皮無修復期',
+      '精華液分子直達真皮層，澎潤飽滿持久發光'
     ],
     durationMinutes: 90,
-    price: 2200,
-    originalPrice: 2800,
-    badge: '釋壓必選',
-    tagColor: 'text-amber-800 bg-amber-50 border-amber-200/70',
-    description: '在獨立隱私包廂的靜謐氛圍中，專業芳療師以溫熱草本精油搭配深層經絡滑壓、揉捏與伸展，逐一鬆解全身筋膜的長期緊繃，讓身心靈回歸完全放鬆的寧靜狀態。',
+    price: 3600,
+    originalPrice: 4500,
+    badge: '醫美原廠',
+    tagColor: TAG_COLORS['=100片面膜'],
+    description: '高端儀器深層美學！以音速超音速氣壓噴射，將專利微胜肽水光精華無創滲透導入肌底，如同一次敷上100片高效面膜，迅速撫平細紋、深層澎潤，重塑透明感原生肌。',
     steps: [
-      '嗅吸客製高山薰衣草與甜橙精油',
-      '全背溫熱乾壓鬆筋深層引導',
-      '肩頸、斜方肌與背部深層精油揉捏',
-      '大腿小腿深層淋巴循環滑壓',
-      '腰部及臀部肌肉緊繃釋放',
-      '頭部與前胸鎖骨順氣放鬆收尾'
+      '溫和潔膚與手工粉刺細緻淨化',
+      'SEYO 德國無創氣壓深層注氧喚膚',
+      '專屬高濃度水光胜肽精華超音速導入',
+      '醫美光能美白照射修護',
+      '膠原蛋白極效修護冰封軟膜'
     ],
-    suitableFor: ['長期高壓忙碌、身心緊繃疲累者', '全身肌肉緊繃、睡眠品質不佳者', '希望享受 90 分鐘專屬私人沉浸時光者'],
-    homecareTips: ['施作當晚建議早睡，維持身體循環代謝', '多飲用溫水促進身體代謝循環', '施作當天避免吹冷風或沖冷水澡'],
+    suitableFor: ['肌膚極度乾燥缺水、細紋明顯者', '婚禮、舞台表演、重要活動前急救透亮', '害怕針劑侵入但渴望極致水光者'],
+    homecareTips: ['施作後一週水分吸收極快，建議每日早晚保濕', '多喝溫開水維持肌膚高含水量', '外出務必塗抹防曬乳'],
+    image: '/assets/aistudio/DM-final_b75ff188.jpg',
   },
   {
-    id: 'deep-shoulder-neck-relief',
-    category: 'massage',
-    subCategory: '深層調理',
-    title: '芳香深層肩頸背部放鬆調理',
-    tagline: '溫感精油深入肌肉 · 鬆解斜方肌與背部僵硬',
+    id: 'liquid-picosecond',
+    category: 'skincare',
+    subCategory: '美白緊緻',
+    tags: ['美白緊緻', '深層修護'],
+    title: '液態皮秒煥膚管理',
+    tagline: '',
     features: [
-      '溫熱精油深層滲透肌肉筋膜',
-      '深層釋放斜方肌與膏肓穴酸脹',
-      '恢復身心輕盈暢快深呼吸'
+      '專利多元果酸與胜肽煥膚配方',
+      '改善暗沉粗糙、斑點蠟黃與粗大毛孔',
+      '預約即贈光能美白照射（提亮美白·減少出油）'
+    ],
+    durationMinutes: 80,
+    price: 2500,
+    originalPrice: 3200,
+    badge: '預約贈美白光',
+    tagColor: TAG_COLORS['美白緊緻'],
+    description: '隨附圖人氣特惠項目！透過溫和配方深層代謝表皮色素與老化角質，結合低痛感手工粉刺清潔與光能美白，立即改善粗大毛孔、出油暗沉，讓肌膚光感升級。',
+    steps: [
+      '胺基酸親膚深層卸洗',
+      '低痛感手工粉刺清潔淨化',
+      '液態皮秒精華分層溫和刷膚',
+      '中和舒緩冰晶冷敷鎮定',
+      '光能美白照射修護',
+      '神經醯胺修護乳封存'
+    ],
+    suitableFor: ['出油量大、容易暗沉長痘痘者', '膚色不均、有色沉痘印困擾者', '希望肌膚緊緻光滑細膩者'],
+    homecareTips: ['施作後 7 天避免使用A醇或磨砂產品', '加強日常防曬與保濕補水', '洗臉水溫維持常溫，避免泡澡'],
+    image: '/assets/aistudio/ig_line_aujust_25a44ce2.jpg',
+  },
+  {
+    id: 'spicule-regeneration',
+    category: 'skincare',
+    subCategory: '深層修護',
+    tags: ['深層修護'],
+    title: '藻針重生肌管理',
+    tagline: '',
+    features: [
+      '天然海洋微晶藻針深層喚醒肌膚代謝',
+      '針對頑固粉刺、囊腫痘痘、凹凸粗糙毛孔',
+      '全課程含手工粉刺深度排毒清除'
+    ],
+    durationMinutes: 100,
+    price: 3000,
+    originalPrice: 3800,
+    badge: '粉刺痘痘肌必推 !!',
+    tagColor: TAG_COLORS['深層修護'],
+    description: '粉刺痘痘肌的救星！運用純天然淡水微晶矽藻，物理性深入毛孔基底加速老化角質自然剝落，促進健康肌膚再生，大幅改善閉鎖粉刺與痘痘發炎狀況。',
+    steps: [
+      '深層活氧洗顏潔膚',
+      '專業手工排毒清痘清粉刺',
+      '高純度微晶藻針深層按壓植入',
+      '洋甘菊冰封水導膜深層降紅退熱',
+      'EGF生長胜肽修護乳塗抹防護'
+    ],
+    suitableFor: ['頑固粉刺、反覆發作痘痘肌膚', '毛孔角化粗糙、色素沉澱凹疤者', '角質代謝停滯肥厚者'],
+    homecareTips: ['施作後 24-48 小時內避免碰水洗臉', '皮膚微刺屬正常現象，多噴保濕純露', '一週內禁止去角質、三溫暖及劇烈運動'],
+  },
+  {
+    id: 'face-contour-massage',
+    category: 'skincare',
+    subCategory: '深層修護',
+    tags: ['深層修護', '美白緊緻'],
+    title: '小臉提顏鬆筋',
+    tagline: '',
+    features: [
+      '東方經絡撥筋手法深層放鬆咀嚼肌',
+      '加速面部循環排水腫，清晰下顎輪廓線',
+      '耗時約 40 分鐘，快速重現立體小V臉'
     ],
     durationMinutes: 50,
-    price: 1180,
-    originalPrice: 1600,
-    badge: '上班族救星',
-    tagColor: 'text-teal-800 bg-teal-50 border-teal-200/70',
-    description: '專為長期低頭滑手機、久坐電腦前的上班族設計。以溫熱天然植物精油搭配精準穴位揉捏與按壓，徹底鬆開肩頸肌肉的硬塊打結，迅速卸下累積的疲倦重擔。',
+    price: 1500,
+    originalPrice: 2000,
+    badge: '約會秘密武器',
+    tagColor: TAG_COLORS['深層修護'],
+    description: '約會、面試或拍照前的秘密法寶！利用天然玉石撥筋工具深入面部肌肉筋膜，釋放長期疲累緊繃，疏通淋巴排水腫，瞬間拉提下垂線條，氣色容光煥發。',
     steps: [
-      '背部溫熱鬆筋深層引導開穴',
-      '迷迭香與尤加利溫熱精油塗抹',
-      '大椎穴、風池穴與肩胛骨周圍深度鬆解',
-      '斜方肌精準指壓與深層滑撫',
-      '手臂伸展與肩頸熱敷放鬆'
+      '臉部放鬆熱敷與精油喚膚',
+      '面部經絡穴位重點鬆筋',
+      '下顎線與咀嚼肌深層筋膜提拉',
+      '頸部與鎖骨淋巴排導引流',
+      '緊膚膠原定型水光敷膜'
     ],
-    suitableFor: ['久坐辦公室、肩膀長期僵硬酸脹者', '經常低頭看手機、頸椎緊繃不適者', '午休或下班後希望迅速釋壓者'],
-    homecareTips: ['當晚避免直接吹對流冷氣或電風扇', '平時每隔 50 分鐘適度起身伸展頸部', '維持良好坐姿與電腦螢幕視線高度'],
+    suitableFor: ['容易晨起臉部水腫、雙下巴者', '咀嚼肌緊繃、面部輪廓線鬆弛者', '重要拍照前希望臉型立體者'],
+    homecareTips: ['施作後多喝溫水促進代謝排出水分', '早起可搭配向上滑按耳後淋巴', '避免熬夜與睡前攝取過多鹽分'],
   },
   {
-    id: 'botanical-head-spa',
-    category: 'massage',
-    subCategory: '舒緩抗敏',
-    title: '植萃精油頭部舒壓放鬆 SPA',
-    tagline: '頭部十二經絡穴位指壓 · 釋放眼壓與緊繃偏頭痛',
+    id: 'back-custom-care',
+    category: 'skincare',
+    subCategory: '深層修護',
+    tags: ['深層修護'],
+    title: '背部客製化管理',
+    tagline: '',
     features: [
-      '瑞士進口草本複方精油深層滲透',
-      '百會穴、風池穴等經絡精準開穴',
-      '大幅改善睡眠障礙、眼周疲憊與頭脹'
+      '全背大面積手工無痛粉刺潔淨',
+      '溫和去角質調理背部痘印暗沉',
+      '冰封鎮定水凝膜深層收斂毛孔'
+    ],
+    durationMinutes: 80,
+    price: 2800,
+    originalPrice: 3500,
+    badge: '還你美背',
+    tagColor: TAG_COLORS['深層修護'],
+    description: '夏天穿露背裝、比基尼必備！針對平時自己洗不到、容易堆積油脂角質的背部，進行全背深度清潔、粉刺排空、淡化痘印與冰敷收斂，重現光滑無瑕美背。',
+    steps: [
+      '背部深層去角質淨膚洗浴',
+      '草本角質軟化與放鬆熱敷',
+      '全背細緻手工無痛粉刺清剿',
+      '茶樹植萃淨化精華深層導入',
+      '全背冰封舒緩鎮定泥膜'
+    ],
+    suitableFor: ['背部容易出油、冒粉刺痘痘者', '背部色素沉澱、痘印斑駁者', '有露背穿搭或婚禮拍照需求者'],
+    homecareTips: ['平時洗完頭髮請先沖淨背部護髮乳', '洗澡後穿著透氣純棉衣物', '定期使用溫和身體噴霧維持水油平衡'],
+  },
+
+  // ==========================================
+  // 2. 乾淨除毛 (Waxing) - 隨附圖【熱蠟 & 日式光學除毛價目表】
+  // 全課程皆含沐浴清潔 (限私密部位)、維他命E油修護
+  // ==========================================
+  {
+    id: 'waxing-plan-a',
+    category: 'waxing',
+    subCategory: '私密部位',
+    tags: ['私密部位', '上半身'],
+    title: '🅐完美型男：VBO巴西式全除 + 腋下',
+    tagline: '',
+    features: [
+      '天然溫熱蠟，低痛感乾淨俐落',
+      '+$300 可升級日式光學'
+    ],
+    durationMinutes: 75,
+    price: 2100,
+    originalPrice: 2800,
+    badge: '',
+    tagColor: 'text-blue-800 bg-blue-50 border-blue-200/70',
+    description: '店內除毛指名度第一名的超值套餐！包含VBO全除與雙側腋下除毛。全館獨立包廂施作，包含沐浴清潔與高規格維他命E油修護，清爽潔淨，告別悶熱異味。+$300 可升級成日式光學除毛。',
+    steps: [
+      '私密部位專屬淋浴潔淨',
+      '植萃蠟前隔離保護修護油',
+      '分區溫熱低痛感細緻熱蠟除毛',
+      '細微雜毛手工精密夾除修飾',
+      '維他命E油深層滋養與金縷梅冷敷'
+    ],
+    suitableFor: ['追求極致乾淨清爽生活型態者', '運動健身、流汗易有悶熱摩擦者', '初次嘗試全身除毛的高CP選擇'],
+    homecareTips: ['術後 3 天避免三溫暖、泡澡及劇烈摩擦', '一週後開始定期進行溫和去角質', '穿著寬鬆透氣內著'],
+  },
+  {
+    id: 'waxing-plan-b',
+    category: 'waxing',
+    subCategory: '私密部位',
+    tags: ['私密部位', '上半身'],
+    title: '🅑質感型男：泳褲修型 + 腋下',
+    tagline: '',
+    features: [
+      '修除邊緣雜亂多餘毛髮',
+      '+$300 可升級日式光學'
+    ],
+    durationMinutes: 60,
+    price: 2000,
+    originalPrice: 2600,
+    badge: '',
+    tagColor: 'text-indigo-800 bg-indigo-50 border-indigo-200/70',
+    description: '專為注重體態修飾與運動穿著設計。專業美體師細膩修型，維持乾淨美觀輪廓，同時潔淨雙側腋下，包含沐浴清潔與維他命E油修護，自信無拘束。+$300 可升級成日式光學除毛。',
+    steps: [
+      '沐浴清潔與私密肌膚調和',
+      '蠟前隔離親膚保護油塗抹',
+      '精緻對稱泳褲線條熱蠟修除',
+      '雙側腋下根部除毛',
+      '鎮定舒緩與維他命E修護'
+    ],
+    suitableFor: ['喜愛游泳、海灘衝浪、水上運動者', '不想完全除光但希望外觀乾淨整齊者', '穿著低腰運動褲不露邊角雜毛'],
+    homecareTips: ['除毛後避免穿著過緊三角褲', '加強日常保濕乳液塗抹', '避免摩擦與熱水刺激'],
+  },
+  {
+    id: 'waxing-plan-c',
+    category: 'waxing',
+    subCategory: '上半身',
+    tags: ['上半身'],
+    title: '🅒清爽型男：全鬍（熱蠟 + 光學）',
+    tagline: '',
+    features: [
+      '告別天天刮鬍青髭小黑點與發炎',
+      '大幅延緩生長速度，輪廓線清爽年輕',
+      '雙效合一，徹底潔淨'
     ],
     durationMinutes: 45,
-    price: 980,
-    originalPrice: 1300,
-    badge: '好眠舒壓',
-    tagColor: 'text-amber-800 bg-amber-50 border-amber-200/70',
-    description: '現代人長時間使用螢幕造成眼壓過高、思緒緊繃甚至失眠。芳療師以客製草本精油配合檀木經絡梳與穴位指腹深層按壓，瞬間撫平緊繃神經，恢復清爽輕盈。',
+    price: 2200,
+    originalPrice: 2900,
+    badge: '',
+    tagColor: 'text-cyan-800 bg-cyan-50 border-cyan-200/70',
+    description: '告別天天用刮鬍刀導致的毛囊發炎、粗糙青色鬍渣與暗沉！結合熱蠟連根淨除與日式光學雙效能量，讓面部下半部重現光滑透亮，視覺年齡立刻減齡。',
     steps: [
-      '嗅吸舒壓甜橙與高山薰衣草精油',
-      '百會穴、太陽穴、風池穴開穴指壓',
-      '溫熱精油頭皮深層指腹揉捏放鬆',
-      '天然檀木經絡梳深層梳理微循環',
-      '眼周草本舒壓熱敷閉目靜心'
+      '臉部深層潔顏與軟化鬍根',
+      '臉部專用親膚蠟前隔離護理',
+      '順向細緻熱蠟拔除粗硬鬍根',
+      '日式光學淨白光波照射延緩毛髮',
+      '蘆薈冰封水導膜深層降溫退紅'
     ],
-    suitableFor: ['長時間專注螢幕、用眼過度眼脹者', '睡眠品質差、容易醒來或難以入睡者', '思緒繁雜、壓力型偏頭痛緊繃者'],
-    homecareTips: ['施作當晚避免飲用咖啡或濃茶', '睡前可進行 5 分鐘腹式深呼吸', '當晚建議提早就寢促進身體自然修復'],
+    suitableFor: ['鬍鬚生長旺盛半天就冒黑渣者', '經常刮鬍引起毛囊紅腫倒插者', '追求乾淨俐落紳士面貌者'],
+    homecareTips: ['當天避免熱水沖臉，避免使用含酒精刮鬍水', '一週內加強保濕，外出做好防曬', '生長出之細軟毛請勿自行用刮刀硬刮'],
+  },
+
+  // ==========================================
+  // 3. 舒壓按摩 (Massage) - 隨附圖【SPA 按摩價目表】
+  // (限男性) 全課程皆含沐浴清潔，純天然玫瑰精油 & 專業沙龍去角質粉
+  // ==========================================
+  {
+    id: 'rose-hot-stone-spa',
+    category: 'massage',
+    subCategory: '深層修護',
+    tags: ['深層修護'],
+    title: '玫瑰精油熱石舒壓',
+    tagline: '',
+    features: [
+      '精油採用純天然玫瑰精油，溫熱火山能量熱石深入肌肉',
+      '60 分鐘 $1,200 ｜ 90 分鐘 $1,500'
+    ],
+    durationMinutes: 60,
+    price: 1200,
+    originalPrice: 1600,
+    badge: '',
+    tagColor: TAG_COLORS['深層修護'],
+    description: '限男性專屬。全課程皆含獨立包廂沐浴清潔，嚴選純天然頂級玫瑰精油，搭配溫熱能量火山玄武石深層滑壓經絡，溫熱能量直達深層肌肉硬結，深層融化長期累積的壓力與疲倦。',
+    steps: [
+      '獨立包廂舒心淋浴沐浴洗淨',
+      '全背玫瑰精油深層溫熱開穴',
+      '能量火山玄武岩熱石深層滑推',
+      '肩頸斜方肌與膏肓穴深層釋壓',
+      '腿部經絡循環舒緩與熱敷'
+    ],
+    suitableFor: ['長期高壓疲勞、肩膀沈重僵硬者', '容易手腳冰冷、循環不佳者', '享受溫熱能量放鬆身心者'],
+    homecareTips: ['施作當晚避免吹對流冷風', '多喝溫水幫助身體循環代謝', '當晚建議早早就寢休息'],
+  },
+  {
+    id: 'rose-body-scrub',
+    category: 'massage',
+    subCategory: '細緻拋光',
+    tags: ['細緻拋光'],
+    title: '精油全身去角質',
+    tagline: '',
+    features: [
+      '天然玫瑰精油 & 專業沙龍去角質粉',
+      '拋光全身粗糙老廢角質，肌膚重回絲滑細緻',
+      '打造清爽乾淨的紳士體態'
+    ],
+    durationMinutes: 45,
+    price: 990,
+    originalPrice: 1400,
+    badge: '',
+    tagColor: TAG_COLORS['細緻拋光'],
+    description: '限男性專屬。採用頂級天然玫瑰精油與專業沙龍去角質粉，細緻研磨全身每一吋肌膚，溫和代謝背部、手肘、膝蓋等粗糙暗沉角質，讓全身重現乾淨透亮。',
+    steps: [
+      '沐浴潔膚與全身溫和暖膚',
+      '玫瑰精油調和沙龍去角質微粉全身打圈代謝',
+      '重點加強背部、手肘、膝蓋與足跟',
+      '溫水淋浴沖淨老舊角質碎屑',
+      '深層潤澤保濕乳液全身封存'
+    ],
+    suitableFor: ['全身角質厚重、觸感粗糙者', '背部暗沉痘印、手臂顆粒感者', '追求乾淨清爽紳士形象者'],
+    homecareTips: ['去角質後一週勤擦保濕乳液', '避免使用過熱水溫沐浴', '白天外出時注意身體防曬'],
+  },
+  {
+    id: 'root-vitality-spa',
+    category: 'massage',
+    subCategory: '活絡機能',
+    tags: ['活絡機能'],
+    title: '根源調理舒壓',
+    tagline: '',
+    features: [
+      '專注男性生理核心循環',
+      '深度活絡機能，喚醒根源張力',
+      '60分 $1,800 ｜ 90分 $2,200 ｜ 120分 $2,800'
+    ],
+    durationMinutes: 60,
+    price: 1800,
+    originalPrice: 2400,
+    badge: '',
+    tagColor: TAG_COLORS['活絡機能'],
+    description: '限男性專屬的高端養生療程。在完全私密的一人一室包廂中，透過純天然精油針對男性核心循環經絡進行深度按摩調理，促進深層血循暢通，重拾活力生機。',
+    steps: [
+      '獨立包廂放鬆沐浴潔淨',
+      '腹股溝及下焦核心經絡溫熱引導',
+      '天然純草本精油深層深層滑壓揉捏',
+      '腰部及骨盆核心肌肉深層放鬆',
+      '溫熱草本熱敷舒緩封存'
+    ],
+    suitableFor: ['久坐下半身循環不良、腰腹緊繃者', '疲憊無力、渴望重拾活力元氣者', '注重男性深層養生保養者'],
+    homecareTips: ['施作後可飲用溫熱開水或養生茶', '避免當晚劇烈運動或熬夜', '維持規律作息'],
+  },
+
+  // ==========================================
+  // 4. 限定活動專案 (Campaign) - 隨附圖【獨奏時分 × 肌本調律】與【限定優惠】
+  // ==========================================
+  {
+    id: 'campaign-music-stage',
+    category: 'campaign',
+    subCategory: '全效煥膚',
+    tags: ['全效煥膚', '美白緊緻'],
+    title: '【我即舞台 · 極致透亮】',
+    tagline: '',
+    features: [
+      'SEYO空氣水光／韓式水飛梭二擇一',
+      '贈光能美白 + 小臉提顏撥筋 雙重禮遇'
+    ],
+    durationMinutes: 100,
+    price: 2880,
+    originalPrice: 3600,
+    badge: '音樂人限定特惠',
+    tagColor: TAG_COLORS['全效煥膚'],
+    description: '隨附海報【獨奏時分 × 肌本調律】強檔主打！為肌膚注入純淨光采。SEYO空氣水光或韓式水飛梭二選一，加贈光能美白與小臉提顏撥筋，抹去暗沉浮腫，綻放專屬舞台光芒。',
+    steps: [
+      '溫和潔顏與肌膚評估',
+      'SEYO 空氣水光 或 韓式水飛梭 二擇一施作',
+      '手工深層粉刺排毒清除',
+      '小臉提顏撥筋（消除水腫拉提輪廓）',
+      '光能美白修護照射',
+      '膠原深層鎖水定型面膜'
+    ],
+    suitableFor: ['音樂人、表演者、舞台工作者', '即將參與重要聚會活動需要極致發光者', '想一次體驗儀器與手技雙重極致者'],
+    homecareTips: ['施作後一週加強保濕面膜', '外出做好完整防曬', '避免熬夜維持水光巔峰'],
+    image: '/assets/aistudio/DM-final_b75ff188.jpg',
+  },
+  {
+    id: 'campaign-future-star',
+    category: 'campaign',
+    subCategory: '水潤透亮',
+    tags: ['水潤透亮', '高CP✨'],
+    title: '【未來之星 · 水潤淨透】',
+    tagline: '',
+    features: [
+      '本顏·基礎植萃保濕 + 光能美白 + 小臉提顏撥筋三合一',
+      '出示憑學生證+IG限動標記即享優惠NT$1,999'
+    ],
+    durationMinutes: 90,
+    price: 1999,
+    originalPrice: 2800,
+    badge: '學生專屬甜甜價',
+    tagColor: TAG_COLORS['水潤透亮'],
+    description: '出示學生證與 IG 限動標記，即可享受 $1,999 專屬甜甜價！包含完整本顏·基礎植萃保濕、光能美白修護與小臉提顏撥筋三合一。',
+    steps: [
+      '洗顏與手工粉刺細緻淨化',
+      '植萃保濕精華深層導入',
+      '小臉提顏鬆筋拉提面部水腫',
+      '光能美白照射提亮肌膚色澤',
+      '保濕水凝冰封鎮定敷膜'
+    ],
+    suitableFor: ['在學學生、剛畢業職場新鮮人', '常熬夜讀書、打報告肌膚暗沉蠟黃者', '小資預算想享受全套高端護理者'],
+    homecareTips: ['當晚以常溫水潔面', '多喝溫水促進代謝', '定期防曬'],
+    image: '/assets/aistudio/DM-final_b75ff188.jpg',
+  },
+  {
+    id: 'campaign-liquid-pico',
+    category: 'campaign',
+    subCategory: '美白緊緻',
+    tags: ['美白緊緻', '深層修護'],
+    title: '【液態皮秒煥膚】',
+    tagline: '',
+    features: [
+      '提亮美白 ｜ 細緻肌膚 ｜ 減少出油',
+      '預約即贈光能美白照射（提亮美白·減少出油）',
+      '溫和水解老舊角質，撫平顆粒粗糙感'
+    ],
+    durationMinutes: 80,
+    price: 2500,
+    originalPrice: 3200,
+    badge: '八月限定',
+    tagColor: TAG_COLORS['美白緊緻'],
+    description: '隨附圖專案限定！只要預約液態皮秒課程，即免費加贈「光能美白」修護！溫和去除老舊角質與暗沉色素，讓毛孔細膩緊緻，上妝不浮粉。',
+    steps: [
+      '深層洗卸潔顏',
+      '手工深層粉刺排空清理',
+      '液態皮秒精華分層溫和刷顏',
+      '中和舒緩冰晶冷敷鎮定',
+      '光能美白照射（免費加贈）',
+      '修護乳霜深層鎖水'
+    ],
+    suitableFor: ['出油量大、粗糙暗沉肌膚', '毛孔角化顆粒感明顯者', '想要快速美白提亮好氣色者'],
+    homecareTips: ['一週內避免酸類及磨砂去角質', '注重日常保濕與純物理防曬', '使用常溫水洗臉'],
+    image: '/assets/aistudio/ig_line_aujust_25a44ce2.jpg',
   }
 ];
+
+// 價目表中的「細節加點」項目（精簡文字、區分基礎加點與高效安瓶系列）
+export const BASE_DETAIL_ADDONS = [
+  { id: 'face-scraping', title: '小臉鬆筋', duration: '40min', price: 999, desc: '筋膜深層放鬆，消除臉部浮腫' },
+  { id: 'shoulder-relief', title: '頭肩舒壓', duration: '15min', price: 399, desc: '釋放肩頸斜方肌酸脹' },
+  { id: 'photo-whitening', title: '光能美白', duration: '15min', price: 299, desc: '提亮膚色、平衡皮脂細緻毛孔' },
+];
+
+export const AMPOULE_DETAIL_ADDONS = [
+  { id: 'ampoule-oil-control', title: '控油美白安瓶', duration: '超聲波導入', price: 599, desc: '調節皮脂分泌，淡化暗沉' },
+  { id: 'ampoule-firming', title: '彈潤抗老安瓶', duration: '超聲波導入', price: 699, desc: '多胜肽精華，深層緊緻撫紋' },
+  { id: 'ampoule-pdrn', title: 'PDRN 水光安瓶', duration: '超聲波導入', price: 999, desc: '三文魚修護精萃，強健屏障' }
+];
+
+export const DETAIL_ADDONS = [...BASE_DETAIL_ADDONS, ...AMPOULE_DETAIL_ADDONS];
 
 export const ADDONS: AddonItem[] = [
   {
@@ -382,11 +609,11 @@ export const FAQS = [
   },
   {
     question: '預約後如果需要更改時間或取消該怎麼辦？',
-    answer: '為了維護每位客人的隱私與完整預約時段，若需更改或取消，請於預約時間前 24 小時透過官方 IG ( @healglow_space ) 或致電 0962015282 告知我們，我們將由專人為您重新安排最佳時段。'
+    answer: '為了維護每位客人的隱私與完整預約時段，若需更改或取消，請於預約時間前 24 小時透過官方 IG ( @healglow_space ) 告知我們，我們將由專人為您重新安排最佳時段。'
   }
 ];
 
-// Image 2: SKIN HOMECARE PRODUCTS
+// SKIN HOMECARE PRODUCTS
 export const HOMECARE_PRODUCTS = [
   {
     id: 'cica-b5-serum',
@@ -414,7 +641,7 @@ export const HOMECARE_PRODUCTS = [
   },
 ];
 
-// Image 3: RESERVATION POLICY 工作室採全預約制
+// RESERVATION POLICY 工作室採全預約制
 export const RESERVATION_POLICIES = [
   {
     title: '準時守則',
@@ -430,7 +657,7 @@ export const RESERVATION_POLICIES = [
   },
 ];
 
-// 保養小撇步✨
+// 保養小步驟✨
 export const SKINCARE_TIPS = [
   {
     title: '常溫清潔，避免摩擦',
@@ -449,4 +676,3 @@ export const SKINCARE_TIPS = [
     content: '每日建議飲用 1,500 ~ 2,000c.c. 溫開水，幫助體內循環代謝，施作當晚早早就寢，給予肌膚充足自我修復的沉睡時光。',
   },
 ];
-

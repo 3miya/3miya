@@ -2,25 +2,24 @@ import React from 'react';
 import { STUDIO_INFO } from '../data/treatments';
 
 interface CtaButtonsProps {
-  onOpenBooking: () => void;
   className?: string;
 }
 
 /**
  * Image 1 Reference Dual Capsule Action Buttons:
- * [ LINE 預約 ] (Green background with LINE speech bubble)
+ * [ LINE 預約 ] (Green background with LINE speech bubble, direct LINE link)
  * [ Instagram ] (White background with warm gold/tan border and Instagram camera icon)
  */
 export const CtaButtons: React.FC<CtaButtonsProps> = ({
-  onOpenBooking,
   className = '',
 }) => {
   return (
     <div className={`flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full max-w-lg mx-auto ${className}`}>
       {/* LINE 預約 (Exact Image 1 Style: Green Pill #06C755) */}
-      <button
-        type="button"
-        onClick={onOpenBooking}
+      <a
+        href={STUDIO_INFO.lineUrl}
+        target="_blank"
+        rel="noreferrer"
         className="w-full sm:w-56 h-12 bg-[#06C755] hover:bg-[#05b34c] active:scale-[0.98] text-white font-bold text-sm sm:text-base rounded-full shadow-[0_4px_14px_rgba(6,199,85,0.25)] transition-all flex items-center justify-center gap-2.5 cursor-pointer whitespace-nowrap"
       >
         {/* LINE Speech Bubble Icon */}
@@ -32,7 +31,7 @@ export const CtaButtons: React.FC<CtaButtonsProps> = ({
           <path d="M12 2C6.48 2 2 5.92 2 10.75c0 4.3 3.58 7.9 8.44 8.64.33.07.78.22.89.51.1.26.07.67.03 1.02l-.32 1.4c-.1.45-.48 1.76.77 1.05 1.25-.71 6.75-3.97 9.21-6.8 2.01-2.28 2.98-4.22 2.98-5.82C22 5.92 17.52 2 12 2z" />
         </svg>
         <span className="tracking-wide">LINE 預約</span>
-      </button>
+      </a>
 
       {/* Instagram (Exact Image 1 Style: White Pill with warm tan/gold border #C5A880) */}
       <a

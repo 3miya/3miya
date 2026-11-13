@@ -2,102 +2,120 @@ import React from 'react';
 
 interface BrandLogoProps {
   className?: string;
-  variant?: 'horizontal' | 'mark-only' | 'stacked';
+  variant?: 'horizontal' | 'mark-only' | 'stacked' | 'text-only';
   size?: 'sm' | 'md' | 'lg' | 'xl';
 }
 
 /**
  * BrandLogo component rendering the authentic 本顏室 (Skincare & Waxing) logo
- * matching the user uploaded brand identity assets.
+ * strictly following the client's uploaded official brand identity artwork.
  */
 export const BrandLogo: React.FC<BrandLogoProps> = ({
   className = '',
   variant = 'horizontal',
   size = 'md',
 }) => {
-  // Slate grey brand color from the uploaded artwork: #7E8E9B / #6B7B87
-  const markColor = '#7B8D99';
-  const textColor = '#3A4B56';
-
-  // SVG Geometric Mark from 本顏室-1.png
-  const LogoMark = ({ s = 36 }: { s?: number }) => (
-    <svg
-      width={s}
-      height={s}
-      viewBox="0 0 100 100"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className="shrink-0"
-    >
-      {/* Top Left Quadrant: Rounded outer corner */}
-      <path
-        d="M 5 20 C 5 11 11 5 20 5 L 47 5 L 47 47 L 5 47 Z"
-        fill={markColor}
-      />
-      
-      {/* Top Right Quadrant: Curved cutout drape motif */}
-      <path
-        d="M 53 5 L 80 5 C 89 5 95 11 95 20 L 95 47 L 53 47 Z"
-        fill={markColor}
-      />
-      <path
-        d="M 53 5 L 53 47 C 53 25 73 5 95 5 Z"
-        fill="#E2ECF4"
-        opacity="0.95"
-      />
-
-      {/* Bottom Left Quadrant: Gentle rising contour wave */}
-      <path
-        d="M 5 53 L 47 53 L 47 95 L 20 95 C 11 95 5 89 5 80 Z"
-        fill={markColor}
-      />
-      <path
-        d="M 5 95 C 25 95 47 70 47 53 L 5 53 Z"
-        fill="#E2ECF4"
-        opacity="0.95"
-      />
-
-      {/* Bottom Right Quadrant: Soft rounded square */}
-      <path
-        d="M 53 53 L 95 53 L 95 80 C 95 89 89 95 80 95 L 53 95 Z"
-        fill={markColor}
-      />
-    </svg>
-  );
+  // Client's official uploaded logo assets:
+  // 1. Full stacked logo (emblem + 本顏室 + Skincare & Waxing)
+  const STACKED_LOGO = '/assets/aistudio/___-1_759b6979.png';
+  // 2. Emblem mark cropped directly from the official art
+  const MARK_LOGO = '/assets/aistudio/logo_mark.png';
+  // 3. Horizontal wordmark (本顏室 + Skincare & Waxing)
+  const TEXT_LOGO = '/assets/aistudio/_______93bc6506.png';
 
   if (variant === 'mark-only') {
-    const s = size === 'sm' ? 28 : size === 'md' ? 36 : size === 'lg' ? 48 : 64;
-    return <LogoMark s={s} />;
+    const heightClass =
+      size === 'sm'
+        ? 'h-7'
+        : size === 'md'
+          ? 'h-9'
+          : size === 'lg'
+            ? 'h-12'
+            : 'h-16';
+    return (
+      <img
+        src={MARK_LOGO}
+        alt="本顏室 Logo"
+        className={`${heightClass} w-auto object-contain shrink-0 ${className}`}
+        loading="eager"
+      />
+    );
+  }
+
+  if (variant === 'text-only') {
+    const heightClass =
+      size === 'sm'
+        ? 'h-6'
+        : size === 'md'
+          ? 'h-8'
+          : size === 'lg'
+            ? 'h-10'
+            : 'h-14';
+    return (
+      <img
+        src={TEXT_LOGO}
+        alt="本顏室 Skincare & Waxing"
+        className={`${heightClass} w-auto object-contain shrink-0 ${className}`}
+        loading="eager"
+      />
+    );
   }
 
   if (variant === 'stacked') {
+    // Exact full logo from user image (geometric mark + calligraphy + typography)
+    const heightClass =
+      size === 'sm'
+        ? 'h-24'
+        : size === 'md'
+          ? 'h-32'
+          : size === 'lg'
+            ? 'h-40'
+            : 'h-44 sm:h-52';
     return (
-      <div className={`flex flex-col items-center text-center ${className}`}>
-        <LogoMark s={size === 'xl' ? 72 : size === 'lg' ? 56 : 42} />
-        <div className="mt-3">
-          <span className="font-serif-tc text-2xl sm:text-3xl font-bold tracking-[0.18em] text-[#243542] block">
-            本顏室
-          </span>
-          <span className="text-xs sm:text-sm font-sans tracking-[0.24em] text-[#5A6D7C] uppercase font-medium block mt-1">
-            Skincare & Waxing
-          </span>
-        </div>
+      <div className={`flex flex-col items-center justify-center text-center ${className}`}>
+        <img
+          src={STACKED_LOGO}
+          alt="本顏室 Skincare & Waxing"
+          className={`${heightClass} w-auto max-w-[210px] sm:max-w-[260px] object-contain shrink-0`}
+          loading="eager"
+        />
       </div>
     );
   }
 
   // Default: Horizontal layout (for Navbar, Headers)
+  const markHeight =
+    size === 'sm'
+      ? 'h-8'
+      : size === 'md'
+        ? 'h-9 sm:h-10'
+        : size === 'lg'
+          ? 'h-11 sm:h-12'
+          : 'h-14 sm:h-16';
+
+  const textHeight =
+    size === 'sm'
+      ? 'h-7'
+      : size === 'md'
+        ? 'h-8 sm:h-9'
+        : size === 'lg'
+          ? 'h-10 sm:h-11'
+          : 'h-12 sm:h-14';
+
   return (
-    <div className={`flex items-center gap-3 ${className}`}>
-      <LogoMark s={size === 'sm' ? 28 : size === 'md' ? 34 : 42} />
-      <div className="flex flex-col justify-center leading-none">
-        <span className="font-serif-tc font-bold tracking-[0.15em] text-[#1E2E38] text-lg sm:text-xl">
-          本顏室
-        </span>
-        <span className="text-[10px] sm:text-[11px] font-sans tracking-[0.2em] text-[#607382] font-semibold uppercase mt-0.5">
-          Skincare & Waxing
-        </span>
-      </div>
+    <div className={`flex items-center gap-2.5 sm:gap-3 shrink-0 ${className}`}>
+      <img
+        src={MARK_LOGO}
+        alt="本顏室"
+        className={`${markHeight} w-auto object-contain shrink-0`}
+        loading="eager"
+      />
+      <img
+        src={TEXT_LOGO}
+        alt="本顏室 Skincare & Waxing"
+        className={`${textHeight} w-auto object-contain shrink-0`}
+        loading="eager"
+      />
     </div>
   );
 };

@@ -1,11 +1,12 @@
-export type TreatmentCategory = 'skincare' | 'waxing' | 'massage';
+export type TreatmentCategory = 'skincare' | 'waxing' | 'massage' | 'campaign';
 
 export type TreatmentTag = '深層調理' | '水光保濕' | '舒緩抗敏' | '緊緻拉提';
 
 export interface Treatment {
   id: string;
-  category: TreatmentCategory; // 'skincare' (皮膚管理) | 'waxing' (乾淨除毛) | 'massage' (舒壓按摩)
+  category: TreatmentCategory; // 'skincare' (皮膚管理) | 'waxing' (乾淨除毛) | 'massage' (舒壓按摩) | 'campaign' (限定活動)
   subCategory: string; // '深層調理' | '水光保濕' | '舒緩抗敏' | '緊緻拉提'
+  tags: string[]; // '深層調理' | '高CP✨' | '敏弱肌友善' | '美白緊緻' | '熱推🔥'
   title: string;
   tagline: string;
   features: string[];
@@ -30,16 +31,19 @@ export interface AddonItem {
   price: number;
 }
 
+export type InfoModalType = 'policy' | 'products' | 'tips' | 'faq' | 'knowledge' | null;
+
 export interface StudioBranch {
   id: string;
   name: string;
   badge: string;
   address: string;
   metro: string;
-  phone: string;
+  phone?: string;
   hours: string;
   googleMapUrl: string;
   instagramUrl: string;
+  lineUrl?: string;
 }
 
 export interface HomecareProduct {

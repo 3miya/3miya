@@ -3,26 +3,37 @@ import { Smartphone, Monitor, Calendar, Sparkles, ExternalLink } from 'lucide-re
 import { BrandLogo } from './BrandLogo';
 import { STUDIO_INFO } from '../data/treatments';
 
+import { InfoModalType } from '../types';
+
 export type DeviceMode = 'mobile' | 'mobile-large' | 'responsive';
 
 interface NavbarProps {
   deviceMode: DeviceMode;
   onDeviceModeChange: (mode: DeviceMode) => void;
-  onOpenBooking: () => void;
+  onOpenModal: (type: InfoModalType) => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
   deviceMode,
   onDeviceModeChange,
-  onOpenBooking,
+  onOpenModal,
 }) => {
+  const handleNavClick = (sectionId: string) => (e: React.MouseEvent) => {
+    e.preventDefault();
+    const el = document.getElementById(sectionId);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      window.history.pushState(null, '', `#${sectionId}`);
+    }
+  };
+
   return (
     <header className="sticky top-0 z-40 bg-[#E2ECF4]/95 backdrop-blur-md border-b border-[#CADAE8] transition-all">
       {/* Top Device Switcher Banner (Desktop utility bar to simulate any phone size) */}
       <div className="hidden md:flex items-center justify-between px-4 py-1.5 bg-[#182837] text-white/90 text-xs border-b border-white/10">
         <div className="flex items-center gap-2 text-sky-200">
           <Sparkles className="w-3.5 h-3.5" />
-          <span className="font-medium">本顏室 · 全尺寸手機自適應與即時預約系統</span>
+          <span className="font-medium">本顏室 · 全尺寸手機自適應與官方資訊平台</span>
         </div>
         <div className="flex items-center gap-1.5">
           <span className="text-white/60 mr-1">檢視尺寸:</span>
@@ -68,60 +79,55 @@ export const Navbar: React.FC<NavbarProps> = ({
       {/* Main Navigation Bar */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
         {/* Brand LOGO (Item 7: 最上方文字改成 LOGO 圖) */}
-        <a href="#hero" className="flex items-center shrink-0 group">
+        <a
+          href="#hero"
+          onClick={handleNavClick('hero')}
+          className="flex items-center shrink-0 group cursor-pointer"
+        >
           <BrandLogo variant="horizontal" size="md" />
         </a>
 
-        {/* One-Page Smooth Scroll Navigation Links */}
+        {/* Navigation Links: 順序與頁面導覽列完全一致 */}
         <nav className="hidden md:flex items-center gap-5 text-xs lg:text-sm font-medium text-[#334E68]">
           <a
             href="#treatments"
-            className="hover:text-[#152433] transition-colors whitespace-nowrap shrink-0"
+            onClick={handleNavClick('treatments')}
+            className="hover:text-[#152433] transition-colors whitespace-nowrap shrink-0 cursor-pointer"
           >
             服務價目
           </a>
-          <a
-            href="#policy"
-            className="hover:text-[#152433] transition-colors whitespace-nowrap shrink-0"
+          <button
+            type="button"
+            onClick={() => onOpenModal('knowledge')}
+            className="hover:text-[#152433] transition-colors whitespace-nowrap shrink-0 cursor-pointer text-left bg-transparent border-none p-0 font-medium"
           >
-            預約須知
-          </a>
-          <a
-            href="#products"
-            className="hover:text-[#152433] transition-colors whitespace-nowrap shrink-0"
+            美容小知識✨
+          </button>
+          <button
+            type="button"
+            onClick={() => onOpenModal('products')}
+            className="hover:text-[#152433] transition-colors whitespace-nowrap shrink-0 cursor-pointer text-left bg-transparent border-none p-0 font-medium"
           >
             產品保養
-          </a>
-          <a
-            href="#tips"
-            className="hover:text-[#152433] transition-colors whitespace-nowrap shrink-0"
+          </button>
+          <button
+            type="button"
+            onClick={() => onOpenModal('tips')}
+            className="hover:text-[#152433] transition-colors whitespace-nowrap shrink-0 cursor-pointer text-left bg-transparent border-none p-0 font-medium"
           >
-            保養小撇步✨
-          </a>
-          <a
-            href="#space"
-            className="hover:text-[#152433] transition-colors whitespace-nowrap shrink-0"
-          >
-            空間禮遇
-          </a>
-          <a
-            href="#faq"
-            className="hover:text-[#152433] transition-colors whitespace-nowrap shrink-0"
+            保養小步驟✨
+          </button>
+          <button
+            type="button"
+            onClick={() => onOpenModal('faq')}
+            className="hover:text-[#152433] transition-colors whitespace-nowrap shrink-0 cursor-pointer text-left bg-transparent border-none p-0 font-medium"
           >
             常見問題
-          </a>
-          <a
-            href="#studio"
-            className="hover:text-[#152433] transition-colors whitespace-nowrap shrink-0"
-          >
-            工作室資訊
-          </a>
+          </button>
         </nav>
 
-        {/* Action Buttons: IG Link (Item 6) + Online Booking */}
-        {/* Action Buttons: IG Link (Item 6) + Online Booking (Unified h-10) */}
+        {/* Action Buttons: 只保留最上方的 IG */}
         <div className="flex items-center gap-2 shrink-0">
-          {/* Instagram Button */}
           <a
             href={STUDIO_INFO.instagramUrl}
             target="_blank"
@@ -144,16 +150,6 @@ export const Navbar: React.FC<NavbarProps> = ({
             </svg>
             <span className="hidden sm:inline">Instagram</span>
           </a>
-
-          {/* Online Booking Button */}
-          <button
-            type="button"
-            onClick={onOpenBooking}
-            className="h-10 px-4 flex items-center justify-center gap-1.5 text-xs sm:text-sm font-bold text-white bg-[#182837] hover:bg-[#25394d] active:scale-[0.98] rounded-xl shadow-xs transition-all whitespace-nowrap shrink-0 cursor-pointer"
-          >
-            <Calendar className="w-4 h-4 text-sky-300" />
-            <span>線上預約</span>
-          </button>
         </div>
       </div>
     </header>
